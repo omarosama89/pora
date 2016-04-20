@@ -5,7 +5,7 @@ class Application_Model_DbTable_Material extends Zend_Db_Table_Abstract
 
     protected $_name = 'material';
 
-    private $_attributes = array();
+    private $_attributes = array('id','title','type','location','owner','cid');
 
 	private function extractData($data,$filter){
 		$extractedData = array();
@@ -22,6 +22,16 @@ class Application_Model_DbTable_Material extends Zend_Db_Table_Abstract
 		return $extractedData;
 	}
 
+	public function addMaterial($data){
+		$data = $this->extractData($data);
+		$this->insert($data);
+	}
+
+	public function getMaterials($id){
+		$query = $this->select();
+		$query->where('cid='.$id);
+		return $this->fetchAll($query)->toArray();
+	}
 
 }
 

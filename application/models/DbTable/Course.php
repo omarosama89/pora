@@ -21,6 +21,19 @@ class Application_Model_DbTable_Course extends Zend_Db_Table_Abstract
 		return $extractedData;
 	}
 
+	public function getCourseTitle($id){
+		$record = $this->find($id)->toArray()[0];
+		return $record['title'];
+	}
 
+	public function getCourses($filter){
+		// var_dump($this);
+		// exit;
+		$data = $this->fetchAll()->toArray();
+		if(isset($filter))
+			return $this->extractData($data,$filter);
+		else
+			return $data;
+	}
 }
 

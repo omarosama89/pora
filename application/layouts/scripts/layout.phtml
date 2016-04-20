@@ -1,0 +1,31 @@
+<html>
+<head>
+	<title></title>
+	<link rel="stylesheet" href="<?php echo $this->baseUrl(); ?>/css/bootstrap.min.css">
+</head>
+<body>
+	<nav class="navbar navbar-default">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <a class="navbar-brand" href="#">PORA</a>
+    </div>
+    <ul class="nav navbar-nav">
+      <li><a href="<?php echo $this->baseUrl(); ?>/category/list">Categories</a></li>
+      <li><a href="<?php echo $_products ?>/course/list">Cources</a></li>
+      <li><a href="<?php echo $_products; ?>/user/edit">Edit Profile</a></li>
+    </ul>
+    <div style="float:right">
+    <ul class="nav navbar-nav">
+    <!-- <li><img src="<?php echo $img ?>" width="60px" height="50px"/></li> -->
+    <li><a href="#"><?php echo $this->name; ?></a></li>
+    <li><a href="<?php echo $_logout ?>" >Logout</a></li>
+    
+	</ul>
+	</div>  
+  </div>
+</nav>
+	<?php echo $this->layout()->content; ?>
+  	<script src="<?php echo $this->baseUrl(); ?>/js/jquery.js"></script>
+  	<script src="<?php echo $this->baseUrl(); ?>/js/bootstrap.min.js"></script>
+</body>
+</html>

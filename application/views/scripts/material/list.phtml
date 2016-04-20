@@ -1,0 +1,12 @@
+<br /><br />
+<div id="view-content">
+	<?php var_dump($this->materials) ?>
+	<?php foreach ($this->materials as $material) {
+		echo "<div class='well'>";
+			echo "<ul class='list-group'>";
+				echo "<li class='list-group-item'>".$material['title']."</li>";
+				echo "<li class='list-group-item'><a href='localhost/".$material['location']."'>Download</a></li>";
+			echo "</ul>";
+		echo "</div>";
+	} ?>
+</div>

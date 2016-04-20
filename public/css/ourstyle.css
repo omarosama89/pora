@@ -1,0 +1,30 @@
+.table td,th {
+   text-align: center;   
+}
+
+.center-table
+{
+  margin: 0 auto !important;
+  float: none !important;
+}
+
+td {
+width: 90px;
+}
+
+.table,.container {
+   width: 80%;
+}
+
+#dlstbl {
+	width: 70%;	
+}
+
+#con {
+	outline: 1px solid gray;
+
+}
+
+figcaption { 
+    display: block;
+}
