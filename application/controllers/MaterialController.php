@@ -46,13 +46,13 @@ class MaterialController extends Zend_Controller_Action
             // $this->redirect("post/list");
         } else {
             $ownerId = 1;       // get user id
-            $data = $this->course_model->getCourses();
+            $data = $this->course_model->getCourses(null,null);
             $arr = array();
             // echo getcwd();
             // exit;
             // var_dump($data);
             foreach ($data as $value) {
-                var_dump($value);
+                // var_dump($value);
                 $arr[$value['id']] = $value['title'];
             }
             $this->view->form = new Application_Form_AddMaterial($ownerId,$arr);

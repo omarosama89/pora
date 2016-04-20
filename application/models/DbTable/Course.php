@@ -4,7 +4,7 @@ class Application_Model_DbTable_Course extends Zend_Db_Table_Abstract
 {
 
     protected $_name = 'course';
-    private $_attributes = array();
+    private $_attributes = array('title','descr','owner','cid');
 
 	private function extractData($data,$filter){
 		$extractedData = array();
@@ -26,14 +26,20 @@ class Application_Model_DbTable_Course extends Zend_Db_Table_Abstract
 		return $record['title'];
 	}
 
-	public function getCourses($filter){
-		// var_dump($this);
-		// exit;
-		$data = $this->fetchAll()->toArray();
-		if(isset($filter))
-			return $this->extractData($data,$filter);
-		else
-			return $data;
+	public function getCourses($attr,$val){
+		if(is_null($attr)){
+			$data = $this->fetchAll()->toArray();
+		}else{
+			$query = $this->select();
+			$query->where($attr.'='.$val);
+			$data = $this->fetchAll($query)->toArray();
+		}
+		return $data;
+	}
+
+	public function addCourse($data){
+		$data = $this->extractData($data);
+		$this->insert($data);
 	}
 }
 
