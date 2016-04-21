@@ -1,0 +1,36 @@
+
+
+ <table border='6'>
+ 				            <tr>
+            					<th>userName</th>
+            					<th>email</th>
+            					<th>country</th>
+            					<th>gender</th>
+            					<th>activation</th>
+            				        				
+
+       					    </tr>
+
+
+
+ <?php    if($this->listusers)
+ 			{ 
+
+ 				for($i=0;$i<count($this->listusers);$i++){
+ 					if($this->listusers[$i]['isActive']==0 ){ ?>
+
+ 					<td><?php echo $this->listusers[$i]['uname']; ?></td>
+ 					<td><?php echo $this->listusers[$i]['email']; ?></td>
+ 					<td><?php echo $this->listusers[$i]['country']; ?></td>
+ 					<td><?php echo $this->listusers[$i]['gender']; ?></td>
+ 					<td><?php echo "<a href='".$this->baseUrl()."/index.php/user/active/id/".$this->listusers[$i]['id']."'>activation</a>";?></td>
+ 					
+ 					
+
+ 				<?php } ?>
+  				<?php } ?>
+
+
+</table>
+
+ 				<?php } ?>
