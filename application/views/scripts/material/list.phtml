@@ -1,12 +1,23 @@
 <br /><br />
 <div id="view-content">
-	<?php var_dump($this->materials) ?>
 	<?php foreach ($this->materials as $material) {
 		echo "<div class='well'>";
-			echo "<ul class='list-group'>";
-				echo "<li class='list-group-item'>".$material['title']."</li>";
-				echo "<li class='list-group-item'><a href='localhost/".$material['location']."'>Download</a></li>";
-			echo "</ul>";
+			echo "<div class='well row'>";
+				echo "<div class='form-group'>";
+					echo "<li class='list-group-item col-md-2'>Title :</li>";
+					echo "<li class='list-group-item col-md-10'>".$material['title']."</li>";
+				echo "</div>";					
+			echo "</div>";
+			echo "<div class='well row'>";
+				echo "<div class='form-group'>";
+					echo "<li class='list-group-item col-md-2'>Description :</li>";
+					echo "<li class='list-group-item col-md-10'>".$material['descr']."</li>";
+				echo "</div>";
+				echo "<div class='form-group'>";
+					echo "<li class='list-group-item col-md-2'>Posted by ".'$username'."</li>";
+					echo "<li class='list-group-item col-md-10'><a href=".$this->baseUrl().'/course/list/attr/cid/val/'.$material['id'].">Show courses</a></a></li>";
+				echo "</div>";					
+			echo "</div>";
 		echo "</div>";
 	} ?>
 </div>
