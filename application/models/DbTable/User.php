@@ -4,7 +4,7 @@ class Application_Model_DbTable_User extends Zend_Db_Table_Abstract
 {
 
     protected $_name = 'user';
-    private $_attributes = array();
+    private $_attributes = array(uname,email,pwd,fname,lname,gender,country);
 
 	private function extractData($data,$filter){
 		$extractedData = array();
@@ -21,6 +21,60 @@ class Application_Model_DbTable_User extends Zend_Db_Table_Abstract
 		return $extractedData;
 	}
 
+//----------------------------------------------------------------------------
+	function addUser($data){
+		$row = $this->createRow();
+		$row->uname = $data['uname'];
+		$row->email = $data['email'];
+		$row->pwd = md5($data['password']);
+		$row->fname = $data['fname'];
+		$row->lname = $data['lname'];
+		//$row->img = $data['element'];
+		$row->gender = $data['gender'];
+		$row->country = $data['country'];
+
+		return $row->save();
+	}
+
+//------------------------------------------------------------------------------
+ function listUsers(){
+ 	return $this->fetchAll()->toArray();
+
+ }	
+
+//------------------------------------------------------------
+function getUserById($id){
+	return $this->find($id)->toArray();
+
+} 
+//----------------------------------------------------------
+function editUser($id,$data){
+	$extract_data=$this->extractData($data);
+	$arrayName = array("pwd" => md5($extract_data['password']),"uname"=> $extract_data['uname']);
+	$where = "id =" . $id;
+	return $this->update($arrayName,$where);
+	}
+//---------------------------------------------------------
+	function deleteUser($id){
+
+       return $this->delete('id='.$id);
+	}
+//---------------------------------------
+	function banUser($id){
+	#$extract_data=$this->extractData($data);
+	$arrayName = array("isActive" => 0);
+	$where = "id =" . $id;
+	return $this->update($arrayName,$where);
+	}
+
+	function activeUser($id){
+	#$extract_data=$this->extractData($data);
+	$arrayName = array("isActive" => 1);
+	$where = "id =" . $id;
+	return $this->update($arrayName,$where);
+	}
+
+
+
 
 }
-
