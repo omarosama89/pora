@@ -15,9 +15,11 @@
  			         {
        				    
  				         for($i=0;$i<count($this->listusers);$i++){
- 					       if($this->listusers[$i]['isActive']==1 && $this->listusers[$i]['isAdmin']==0){ ?>
+ 					       if($this->listusers[$i]['isActive']==1 && $this->listusers[$i]['isAdmin']==0){ 
+                 
+                    if( $this->listusers[$i]['id'] == $this->userid){
+                  ?>
 
- 						       					
        					    <tr>
  								<td><?php echo $this->listusers[$i]['uname'];?></td>
  								<td><?php echo $this->listusers[$i]['email'];?></td>
@@ -30,7 +32,7 @@
  							</tr>
  							
  					 
- 				 			<?php } ?>
+ 				 			<?php }}?>
   				<?php } ?>
 
   						</table>
