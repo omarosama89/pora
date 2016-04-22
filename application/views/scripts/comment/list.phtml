@@ -1,0 +1,10 @@
+<br /><br />
+<div id="view-content" class='container'>
+	<p>View script for controller <b>comment</b> and script/action name <b>list</b></p>
+	<?php for($i=0;$i<count($this->comments);$i++){
+		echo "<h5>".$this->comments[$i]['content']."<a href='".$this->baseUrl()."/index.php/comment/delete/id/".$this->comments[$i]['id']."' class='btn btn-success'>delete</a><a href='".$this->baseUrl()."/index.php/comment/edit/id/".$this->comments[$i]['id']."' class='btn btn-primary'>edit</a></h5>";	
+		echo "<br>";
+		echo "<br>";
+	} 
+	 ?>
+</div>
