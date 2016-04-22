@@ -21,6 +21,15 @@ class Application_Model_DbTable_Course extends Zend_Db_Table_Abstract
 		return $extractedData;
 	}
 
+	public function getCourseCategory($id){
+		$record = $this->find($id)->toArray()[0];
+		return $record['cid'];
+	}
+
+	public function getCourse($id){
+		return $this->find($id)->toArray()[0];
+	}
+
 	public function getCourseTitle($id){
 		$record = $this->find($id)->toArray()[0];
 		return $record['title'];
@@ -40,6 +49,18 @@ class Application_Model_DbTable_Course extends Zend_Db_Table_Abstract
 	public function addCourse($data){
 		$data = $this->extractData($data);
 		$this->insert($data);
+	}
+
+	public function deleteCourse($id){
+		// echo $id;exit;
+		$where = 'id = '.$id;
+		$this->delete($where);
+	}
+
+	public function updateCourse($id,$data){
+		$data = $this->extractData($data,array('title','descr','cid'));
+		$where = $this->getAdapter()->quoteInto('id = ?', $id);
+		return $this->update($data,$where);
 	}
 }
 

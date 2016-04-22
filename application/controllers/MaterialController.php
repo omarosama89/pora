@@ -61,17 +61,41 @@ class MaterialController extends Zend_Controller_Action
 
     public function editAction()
     {
-        // action body
+        if($this->_request->isPost()){
+            $data = $this->_request->getParams();
+            $id = $this->_request->getParam('id',-1);
+            $cid = $this->material_model->getMaterialCourse($id);
+            $this->material_model->updateMaterial($id,$data);
+            $this->redirect('material/list/attr/cid/val/'.$cid);
+        }else{
+            $id = $this->getRequest()->getParam('id',-1);
+            $record = $this->material_model->getmaterial($id);
+            $ownerId = 1;       // get user id
+            $data = $this->course_model->getCourses(null,null);
+            $arr = array();
+            foreach ($data as $value) {
+                $arr[$value['id']] = $value['title'];
+            }
+            $form = new Application_Form_AddMaterial($ownerId,$arr);
+            $form->populate($record);
+            $this->view->form = $form;
+            $this->render('add');
+        }
     }
 
     public function listAction()
     {
-        $this->view->materials = $this->material_model->getMaterials(1);
+        $attr = $this->_request->getParam('attr',null);
+        $val = $this->_request->getParam('val',null);
+        $this->view->materials = $this->material_model->getmaterials($attr,$val);
     }
 
     public function deleteAction()
     {
-        // action body
+        $id = $this->_request->getParam('id',-1);
+        $cid = $this->material_model->getMaterialCourse($id);
+        $this->material_model->deleteMaterial($id);
+        $this->redirect('material/list/attr/cid/val/'.$cid);
     }
 
 

@@ -31,7 +31,7 @@ class UserController extends Zend_Controller_Action
     public function editAction()
     {
         // action body
-      $model=new Application_Model_DbTable_User();
+        $model=new Application_Model_DbTable_User();
         $data = $this->getRequest()->getParams();
         $id = $this->getRequest()->getParam('id');
         $form = new Application_Form_User();

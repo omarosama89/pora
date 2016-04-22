@@ -22,6 +22,9 @@ class Application_Model_DbTable_Category extends Zend_Db_Table_Abstract
 		return $extractedData;
 	}
 
+	public function getCategory($id){
+		return $this->find($id)->toArray()[0];
+	}
 
 	public function getCategories($attr,$val){
 		if(is_null($attr)){
@@ -39,5 +42,16 @@ class Application_Model_DbTable_Category extends Zend_Db_Table_Abstract
 		$this->insert($data);
 	}
 
+	public function updateCategory($id,$data){
+		$data = $this->extractData($data,array('title','descr'));
+		$where = $this->getAdapter()->quoteInto('id = ?', $id);
+		return $this->update($data,$where);
+	}
+
+	public function deleteCategory($id){
+		// echo $id;exit;
+		$where = 'id = '.$id;
+		$this->delete($where);
+	}
 }
 
