@@ -17,6 +17,7 @@
           <actionMethod actionName="edit"/>
           <actionMethod actionName="list"/>
           <actionMethod actionName="listban"/>
+          <actionMethod actionName="login"/>
         </controllerFile>
         <controllerFile controllerName="Request">
           <actionMethod actionName="index"/>
@@ -55,7 +56,11 @@
         <formFile formName="AddCategory"/>
         <formFile formName="AddCourse"/>
         <formFile formName="User"/>
+<<<<<<< HEAD
         <formFile formName="AddRequest"/>
+=======
+        <formFile formName="Login"/>
+>>>>>>> 5abd8080b734d32906a2794ef025a5d7f98d8269
       </formsDirectory>
       <layoutsDirectory>
         <layoutScriptsDirectory>
@@ -139,6 +144,7 @@
           <viewControllerScriptsDirectory forControllerName="User">
             <viewScriptFile forActionName="listban"/>
           </viewControllerScriptsDirectory>
+<<<<<<< HEAD
           <viewControllerScriptsDirectory forControllerName="Category">
             <viewScriptFile forActionName="listCRUD"/>
           </viewControllerScriptsDirectory>
@@ -162,6 +168,10 @@
           </viewControllerScriptsDirectory>
           <viewControllerScriptsDirectory forControllerName="Request">
             <viewScriptFile forActionName="delete"/>
+=======
+          <viewControllerScriptsDirectory forControllerName="User">
+            <viewScriptFile forActionName="login"/>
+>>>>>>> 5abd8080b734d32906a2794ef025a5d7f98d8269
           </viewControllerScriptsDirectory>
         </viewScriptsDirectory>
         <viewHelpersDirectory/>

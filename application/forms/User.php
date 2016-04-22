@@ -33,7 +33,7 @@ class Application_Form_User extends Zend_Form
 //------------------------------------------------------------------------
         //add password element
         $this->addElement('password', 'pwd', array(
-            'label'      => ' user_password:',
+            'label'      => 'password:',
             'class'      => 'form-control',
             'required'   => true,
             'size'       => 20,

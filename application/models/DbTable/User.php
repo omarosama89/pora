@@ -29,7 +29,7 @@ class Application_Model_DbTable_User extends Zend_Db_Table_Abstract
 		$row->pwd = md5($data['password']);
 		$row->fname = $data['fname'];
 		$row->lname = $data['lname'];
-		//$row->img = $data['element'];
+		//$row->img = $data['image'];
 		$row->gender = $data['gender'];
 		$row->country = $data['country'];
 
@@ -52,23 +52,31 @@ function getUserById($id){
 //----------------------------------------------------------
 function editUser($id,$data){
 	$extract_data=$this->extractData($data);
-	$arrayName = array("pwd" => md5($extract_data['password']),"uname"=> $extract_data['uname']);
+	$arrayName = array(
+		"pwd" => md5($extract_data['password']),
+		 "uname"=> $extract_data['uname'],
+		 "email"=> $extract_data['email'],
+		 "fname"=> $extract_data['fname'],
+		 "lname"=> $extract_data['lname'],
+		 "country"=> $extract_data['country'],
+		 "gender"=> $extract_data['gender']
+		 );
 	$where = "id =" . $id;
 	return $this->update($arrayName,$where);
 	}
-//---------------------------------------------------------
+//---------------------------------------------------------------------------
 	function deleteUser($id){
 
        return $this->delete('id='.$id);
 	}
-//---------------------------------------
+//-----------------------------------------------------------------------------
 	function banUser($id){
 	#$extract_data=$this->extractData($data);
 	$arrayName = array("isActive" => 0);
 	$where = "id =" . $id;
 	return $this->update($arrayName,$where);
 	}
-
+//-------------------------------------------------------------------------------
 	function activeUser($id){
 	#$extract_data=$this->extractData($data);
 	$arrayName = array("isActive" => 1);
@@ -76,7 +84,7 @@ function editUser($id,$data){
 	return $this->update($arrayName,$where);
 	}
 
-
+//-----------------------------------------------------------------------------
 
 
 }
