@@ -38,6 +38,8 @@ class Application_Model_DbTable_User extends Zend_Db_Table_Abstract
 
 //------------------------------------------------------------------------------
  function listUsers(){
+ 	// var_dump($this->find($id)->toArray());
+ 	// exit;
  	return $this->fetchAll()->toArray();
 
  }	

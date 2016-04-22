@@ -1,5 +1,12 @@
+<?php $isAdmin = true; ?>
 <br /><br />
 <div id="view-content">
+	<div class="form-group well row">
+		<h2 class="col-md-4">Materials</h2>
+		<?php if($isAdmin) { ?>
+			<a href="<?php echo $this->baseUrl();?>/material/add" class="btn btn-success col-md-1">Add Material</a>
+		<?php }?>
+	</div>
 	<?php foreach ($this->materials as $material) {
 		echo "<div class='well'>";
 			echo "<div class='well row'>";
@@ -7,16 +14,19 @@
 					echo "<li class='list-group-item col-md-2'>Title :</li>";
 					echo "<li class='list-group-item col-md-10'>".$material['title']."</li>";
 				echo "</div>";					
-			echo "</div>";
-			echo "<div class='well row'>";
 				echo "<div class='form-group'>";
-					echo "<li class='list-group-item col-md-2'>Description :</li>";
-					echo "<li class='list-group-item col-md-10'>".$material['descr']."</li>";
+					echo "<li class='list-group-item col-md-2'>Type :</li>";
+					echo "<li class='list-group-item col-md-10'>".$material['type']."&nbsp;(<a href=".$this->baseUrl().'/'.$material['location'].">Download</a>)</li>";
 				echo "</div>";
+				if($isAdmin){
+					echo "<div class='form-group'>";
+						echo "<li class='list-group-item col-md-2'>Actions :</li>";
+						echo "<li class='list-group-item col-md-10'><a href=".$this->baseUrl().'/material/edit/id/'.$material['id'].">Edit</a>&nbsp;|&nbsp;<a href=".$this->baseUrl().'/material/delete/id/'.$material['id'].">Delete</a></li>";
+					echo "</div>";
+				}
 				echo "<div class='form-group'>";
 					echo "<li class='list-group-item col-md-2'>Posted by ".'$username'."</li>";
-					echo "<li class='list-group-item col-md-10'><a href=".$this->baseUrl().'/course/list/attr/cid/val/'.$material['id'].">Show courses</a></a></li>";
-				echo "</div>";					
+				echo "</div>";
 			echo "</div>";
 		echo "</div>";
 	} ?>
