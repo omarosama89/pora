@@ -28,7 +28,7 @@ class CategoryController extends Zend_Controller_Action
             $data = $this->_request->getParams();
             $data['owner'] = 1;     // user_id_session
             
-            var_dump($data);
+            // var_dump($data);
             $this->category_model->addCategory($data);
             $this->redirect("category/list");
         } else {
@@ -38,6 +38,7 @@ class CategoryController extends Zend_Controller_Action
         }
     }
 
+<<<<<<< HEAD
     public function deleteAction(){
         $id = $this->getRequest()->getParam('id');
         if($id){
@@ -66,9 +67,57 @@ class CategoryController extends Zend_Controller_Action
         };
     }
 
+=======
+    public function listCRUDAction()
+    {
+        $attr = $this->_request->getParam('attr',null);
+        $val = $this->_request->getParam('val',null);
+        $this->view->categories = $this->category_model->getCategories($attr,$val);
+    }
+
+    public function editAction()
+    {
+        if($this->_request->isPost()){
+            $data = $this->_request->getParams();
+            $id = $this->_request->getParam('id',-1);
+            $this->category_model->updatecategory($id,$data);
+            $attr = $this->_request->getParam('attr',null);
+            $val = $this->_request->getParam('val',null);
+            $this->view->categories = $this->category_model->getCategories($attr,$val);
+            $this->render('list');
+        }else{
+            $id = $this->getRequest()->getParam('id',-1);
+            $record = $this->category_model->getCategory($id);
+            $form = new Application_Form_AddCategory();
+            $form->populate($record);
+            $this->view->form = $form;
+            $this->render('add');
+        }
+
+    }
+
+    public function deleteAction()
+    {
+        $id = $this->_request->getParam('id',-1);
+        $this->category_model->deleteCategory($id);
+        $this->redirect('category/list');
+    }
+>>>>>>> 62fc816913d54e39fd781f7bbc3050ec1be84be1
 
 
 }
+
+// $id = $this->getRequest()->getParam('id');
+// $form = new Application_Form_User();
+// $user = $this->model->getUserById($id);
+// $form->populate($user[0]);
+// $form->setAction('../../add');
+// $this->view->form = $form;
+// $this->render('add');
+
+
+
+
 
 
 

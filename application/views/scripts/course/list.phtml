@@ -1,15 +1,20 @@
+<?php $isAdmin = true; ?>
 <br /><br />
 <div id="view-content">
 	<!-- <p>View script for controller <b>Course</b> and script/action name <b>list</b></p> -->
+	<div class="form-group well row">
+		<h2 class="col-md-4">Courses</h2>
+		<?php if($isAdmin) { ?>
+			<a href="<?php echo $this->baseUrl();?>/course/add" class="btn btn-success col-md-1">Add Course</a>
+		<?php }?>
+	</div>
 	<?php foreach ($this->courses as $course) {
 		echo "<div class='well'>";
 			echo "<div class='well row'>";
 				echo "<div class='form-group'>";
 					echo "<li class='list-group-item col-md-2'>Title :</li>";
 					echo "<li class='list-group-item col-md-10'>".$course['title']."</li>";
-				echo "</div>";					
-			echo "</div>";
-			echo "<div class='well row'>";
+				echo "</div>";
 				echo "<div class='form-group'>";
 					echo "<li class='list-group-item col-md-2'>Description :</li>";
 					echo "<li class='list-group-item col-md-10'>".$course['descr']."</li>";
@@ -17,7 +22,13 @@
 				echo "<div class='form-group'>";
 					echo "<li class='list-group-item col-md-2'>Posted by ".'$username'."</li>";
 					echo "<li class='list-group-item col-md-10'><a href=".$this->baseUrl().'/material/list/attr/cid/val/'.$course['id'].">Show materials</a></a></li>";
-				echo "</div>";					
+				echo "</div>";
+				if($isAdmin){
+					echo "<div class='form-group'>";
+						echo "<li class='list-group-item col-md-2'>Actions :</li>";
+						echo "<li class='list-group-item col-md-10'><a href=".$this->baseUrl().'/course/edit/id/'.$course['id'].">Edit</a>&nbsp;|&nbsp;<a href=".$this->baseUrl().'/course/delete/id/'.$course['id'].">Delete</a></li>";
+					echo "</div>";
+				}				
 			echo "</div>";
 		echo "</div>";
 	} ?>

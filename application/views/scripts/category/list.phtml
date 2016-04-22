@@ -1,6 +1,13 @@
+<?php $isAdmin = true; ?>
 <br /><br />
 <div id="view-content">
 	<!-- <p>View script for controller <b>Category</b> and script/action name <b>list</b></p> -->
+	<div class="form-group well row">
+		<h2 class="col-md-4">Categories</h2>
+		<?php if($isAdmin) { ?>
+			<a href="<?php echo $this->baseUrl();?>/category/add" class="btn btn-success col-md-1">Add Category</a>
+		<?php }?>
+	</div>
 	<?php foreach ($this->categories as $category) {
 		echo "<div class='well'>";
 			echo "<div class='well row'>";
@@ -8,16 +15,20 @@
 					echo "<li class='list-group-item col-md-2'>Title :</li>";
 					echo "<li class='list-group-item col-md-10'>".$category['title']."</li>";
 				echo "</div>";					
-			echo "</div>";
-			echo "<div class='well row'>";
 				echo "<div class='form-group'>";
 					echo "<li class='list-group-item col-md-2'>Description :</li>";
 					echo "<li class='list-group-item col-md-10'>".$category['descr']."</li>";
 				echo "</div>";
 				echo "<div class='form-group'>";
 					echo "<li class='list-group-item col-md-2'>Posted by ".'$username'."</li>";
-					echo "<li class='list-group-item col-md-10'><a href=".$this->baseUrl().'/course/list/attr/cid/val/'.$category['id'].">Show courses</a></a></li>";
-				echo "</div>";					
+					echo "<li class='list-group-item col-md-10'><a href=".$this->baseUrl().'/course/list/attr/cid/val/'.$category['id'].">Show courses</a></li>";
+				echo "</div>";
+				if($isAdmin){
+					echo "<div class='form-group'>";
+						echo "<li class='list-group-item col-md-2'>Actions :</li>";
+						echo "<li class='list-group-item col-md-10'><a href=".$this->baseUrl().'/category/edit/id/'.$category['id'].">Edit</a>&nbsp;|&nbsp;<a href=".$this->baseUrl().'/category/delete/id/'.$category['id'].">Delete</a></li>";
+					echo "</div>";
+				}					
 			echo "</div>";
 			echo "<div class='well row'>";
 					echo "<a href='".$this->baseUrl()."/index.php/category/delete/id/".$category['id']."' class='btn btn-success'>delete</a>";

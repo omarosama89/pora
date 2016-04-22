@@ -14,23 +14,33 @@
                 if($this->listusers)
  			         {
        				    
+<<<<<<< HEAD
  				         for($i=0;$i<count($this->listusers);$i++){
- 					       if($this->listusers[$i]['isActive']==1 && $this->listusers[$i]['isAdmin']==0){ ?>
+ 					       if($this->listusers[$i]['isActive']==1 && $this->listusers[$i]['isAdmin']==0){ 
+                 
+                    if( $this->listusers[$i]['id'] == $this->userid){
+                  ?>
+=======
+                var_dump($this->listusers);
+ 				         foreach ($this->listusers as $user) {
+                   # code...
+                 }
+ 					       if($this->user['isActive']==1 && $this->user['isAdmin']==0){ ?>
+>>>>>>> 54c1a3057ed5e83b54a080e905280244cf893389
 
- 						       					
        					    <tr>
- 								<td><?php echo $this->listusers[$i]['uname'];?></td>
- 								<td><?php echo $this->listusers[$i]['email'];?></td>
- 								<td><?php echo $this->listusers[$i]['country'];?></td>
- 								<td><?php echo $this->listusers[$i]['gender'];?></td>
- 								<td><?php echo "<a href='".$this->baseUrl()."/index.php/user/edit/id/".$this->listusers[$i]['id']."'>edit</a>";?></td>
- 								<td><?php echo "<a href='".$this->baseUrl()."/index.php/user/delete/id/".$this->listusers[$i]['id']."'>delete</a>";?></td>
- 								<td><?php echo "<a href='".$this->baseUrl()."/index.php/user/ban/id/".$this->listusers[$i]['id']."'>Ban</a>";?></td>
+ 								<td><?php echo $this->user['uname'];?></td>
+ 								<td><?php echo $this->user['email'];?></td>
+ 								<td><?php echo $this->user['country'];?></td>
+ 								<td><?php echo $this->user['gender'];?></td>
+ 								<td><?php echo "<a href='".$this->baseUrl()."/index.php/user/edit/id/".$this->user['id']."'>edit</a>";?></td>
+ 								<td><?php echo "<a href='".$this->baseUrl()."/index.php/user/delete/id/".$this->user['id']."'>delete</a>";?></td>
+ 								<td><?php echo "<a href='".$this->baseUrl()."/index.php/user/ban/id/".$this->user['id']."'>Ban</a>";?></td>
  								
  							</tr>
  							
  					 
- 				 			<?php } ?>
+ 				 			<?php }}?>
   				<?php } ?>
 
   						</table>

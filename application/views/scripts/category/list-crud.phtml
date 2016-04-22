@@ -1,0 +1,24 @@
+<br /><br />
+<div id="view-content">
+	<!-- <p>View script for controller <b>Category</b> and script/action name <b>list</b></p> -->
+	<?php foreach ($this->categories as $category) {
+		echo "<div class='well'>";
+			echo "<div class='well row'>";
+				echo "<div class='form-group'>";
+					echo "<li class='list-group-item col-md-2'>Title :</li>";
+					echo "<li class='list-group-item col-md-10'>".$category['title']."</li>";
+				echo "</div>";					
+			echo "</div>";
+			echo "<div class='well row'>";
+				echo "<div class='form-group'>";
+					echo "<li class='list-group-item col-md-2'>Description :</li>";
+					echo "<li class='list-group-item col-md-10'>".$category['descr']."</li>";
+				echo "</div>";
+				echo "<div class='form-group'>";
+					echo "<li class='list-group-item col-md-2'>Posted by ".'$username'."</li>";
+					echo "<li class='list-group-item col-md-10'><a href=".$this->baseUrl().'/course/list/attr/cid/val/'.$category['id'].">Show courses</a></a></li>";
+				echo "</div>";					
+			echo "</div>";
+		echo "</div>";
+	} ?>
+</div>

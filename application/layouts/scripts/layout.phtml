@@ -1,3 +1,6 @@
+<?php 
+  $isAdmin = false;
+?>
 <html>
 <head>
 	<title></title>
@@ -10,16 +13,30 @@
       <a class="navbar-brand" href="#">PORA</a>
     </div>
     <ul class="nav navbar-nav">
-      <li><a href="<?php echo $this->baseUrl(); ?>/category/list">Categories</a></li>
-      <li><a href="<?php echo $this->baseUrl(); ?>/course/list">Cources</a></li>
+      <?php if($isAdmin){ ?>
+        <li><a href="<?php echo $this->baseUrl(); ?>/category/list-crud">Categories</a></li>
+      <?php }else{ ?>
+        <li><a href="<?php echo $this->baseUrl(); ?>/category/list">Categories</a></li>
+      <?php }?>
+      <?php if($isAdmin){ ?>
+        <li><a href="<?php echo $this->baseUrl(); ?>/course/list-crud">Cources</a></li>
+      <?php }else{ ?>
+        <li><a href="<?php echo $this->baseUrl(); ?>/course/list">Cources</a></li>
+      <?php }?>
       <li><a href="<?php echo $this->baseUrl(); ?>/user/edit">Edit Profile</a></li>
-      <li><a href="<?php echo $this->baseUrl(); ?>/index.php/user/listban">List Ban</a></li>
+      <?php if($isAdmin){ ?>
+        <li><a href="<?php echo $this->baseUrl(); ?>/user/list-crud">List users</a></li>
+      <?php } ?>
+      <li><a class="btn btn-success" href="<?php echo $this->baseUrl(); ?>/request/add">Add request</a></li>
+      <!-- <li><a href="<?php echo $this->baseUrl(); ?>/index.php/user/listban">List Ban</a></li> -->
     </ul>
     <div style="float:right">
     <ul class="nav navbar-nav">
     <!-- <li><img src="<?php echo $img ?>" width="60px" height="50px"/></li> -->
     <li><a href="#"><?php echo $this->name; ?></a></li>
-    <li><a href="<?php echo $_logout ?>" >Logout</a></li>
+    <!--<li><a href="<?php echo $_logout ?>" >Logout</a></li>-->
+    <li><a href="<?php echo $this->baseUrl(); ?>/index.php/user/logout">Logout</a></li>
+
 	</ul>
 	</div> 
   </div>
