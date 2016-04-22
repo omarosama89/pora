@@ -125,7 +125,7 @@ CREATE TABLE `material` (
 
 LOCK TABLES `material` WRITE;
 /*!40000 ALTER TABLE `material` DISABLE KEYS */;
-INSERT INTO `material` VALUES (1,'iaiai','video','zend-project/pora/public/files/calculus/tea.jpeg',1,1),(2,'sdfghjk','video','/var/www/html/zend-project/pora/public/files/calculus/Express5-1.mp4',1,1);
+INSERT INTO `material` VALUES (1,'iaiai','video','zend-project/pora/public/files/calculus/tea.jpeg',1,3),(2,'sdfghjk','video','/var/www/html/zend-project/pora/public/files/calculus/Express5-1.mp4',1,1);
 /*!40000 ALTER TABLE `material` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -140,6 +140,7 @@ CREATE TABLE `request` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `content` varchar(300) NOT NULL,
   `owner` int(11) NOT NULL,
+  `done` tinyint(1) NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -196,4 +197,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2016-04-21 16:41:43
+-- Dump completed on 2016-04-22 19:18:22
