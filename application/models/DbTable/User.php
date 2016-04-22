@@ -62,19 +62,19 @@ function editUser($id,$data){
 	$where = "id =" . $id;
 	return $this->update($arrayName,$where);
 	}
-//---------------------------------------------------------
+//---------------------------------------------------------------------------
 	function deleteUser($id){
 
        return $this->delete('id='.$id);
 	}
-//---------------------------------------
+//-----------------------------------------------------------------------------
 	function banUser($id){
 	#$extract_data=$this->extractData($data);
 	$arrayName = array("isActive" => 0);
 	$where = "id =" . $id;
 	return $this->update($arrayName,$where);
 	}
-
+//-------------------------------------------------------------------------------
 	function activeUser($id){
 	#$extract_data=$this->extractData($data);
 	$arrayName = array("isActive" => 1);
@@ -82,7 +82,7 @@ function editUser($id,$data){
 	return $this->update($arrayName,$where);
 	}
 
-
+//-----------------------------------------------------------------------------
 
 
 }
