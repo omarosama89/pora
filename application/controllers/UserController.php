@@ -143,7 +143,7 @@ class UserController extends Zend_Controller_Action
                 $result = $authAdapter->authenticate();
                var_dump($result);
                 if($result->isValid()){
-                    echo "yeeess valid user";
+                    //echo "yeeess valid user";
                     //save data to user 
                     $auth =Zend_Auth::getInstance();
                     $storage = $auth->getStorage();
@@ -154,7 +154,7 @@ class UserController extends Zend_Controller_Action
                     $this->redirect('user/list?id='.$idd); 
                 }
                 else{
-                    echo "not valid";
+                    //echo "not valid";
                     $this->redirect('user/login'); 
                 }
             }
