@@ -10,9 +10,6 @@
 <div id="view-content">
   <div class="form-group well row">
     <h2 class="col-md-4">Requests</h2>
-    <?php if($isAdmin) { ?>
-      <a href="<?php echo $this->baseUrl();?>/material/add" class="btn btn-success col-md-1">Add Material</a>
-    <?php }?>
   </div>
   <?php foreach ($this->listrequest as $req) {
     if(!$req['done']){

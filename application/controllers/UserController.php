@@ -38,6 +38,12 @@ class UserController extends Zend_Controller_Action
     public function editAction()
     {
         // action body
+        $this->auth = Zend_Auth::getInstance();
+        if ($this->auth->hasIdentity()) {
+            $this->view->user = $this->user = $this->auth->getIdentity();
+        }else{
+            $this->redirect('user/login');
+        }
         $model=new Application_Model_DbTable_User();
         $data = $this->getRequest()->getParams();
         $id = $this->getRequest()->getParam('id');
@@ -122,6 +128,7 @@ class UserController extends Zend_Controller_Action
 
     public function loginAction()
     {
+        // echo "login action";exit;
      $login_form = new Application_Form_Login();
      $this->view->login_form = $login_form;
      $data=$this->getRequest()->getParams();
@@ -149,7 +156,6 @@ class UserController extends Zend_Controller_Action
                     $storage = $auth->getStorage();
                     $storage->write($authAdapter->getResultRowObject());
                     $idd=$auth->getIdentity()->id;
-                    echo $idd;
                     $this->redirect('category/list'); 
                 }
                 else{
@@ -178,7 +184,7 @@ class UserController extends Zend_Controller_Action
         $storage = new Zend_Auth_Storage_Session();
         $storage->clear();
         $this->view->login_form = new Application_Form_Login();
-        $this->render('login');
+        $this->redirect('user/login');
     }
 
     public function blockAction()
