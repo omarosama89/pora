@@ -42,7 +42,6 @@ class MaterialController extends Zend_Controller_Action
             $data['owner'] = 1;     // user_id_session
             
             $this->material_model->addMaterial($data);
-            $this->material_model->addMaterial($data);
             $cid = $data['cid'];
             $this->redirect('material/list/attr/cid/val/'.$cid);
             // $this->redirect("post/list");
