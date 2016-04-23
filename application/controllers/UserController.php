@@ -177,7 +177,8 @@ class UserController extends Zend_Controller_Action
         $this->_redirect('index/index');*/
         $storage = new Zend_Auth_Storage_Session();
         $storage->clear();
-        $this->render('home');
+        $this->view->login_form = new Application_Form_Login();
+        $this->render('login');
     }
 
     public function blockAction()

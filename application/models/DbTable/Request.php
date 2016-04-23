@@ -37,4 +37,9 @@ function deleteRequest($id){
 		//echo "id is:$id" ; exit;
        return $this->delete('id='.$id);
 	}
+	public function makeRequestDone($id){
+		$data = array("done" => 1);
+		$where = "id = ".$id;
+		return $this->update($data,$where);
+	}
 }

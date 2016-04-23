@@ -26,6 +26,7 @@
           <actionMethod actionName="add"/>
           <actionMethod actionName="edit"/>
           <actionMethod actionName="delete"/>
+          <actionMethod actionName="done"/>
         </controllerFile>
         <controllerFile controllerName="Material">
           <actionMethod actionName="index"/>
@@ -175,6 +176,9 @@
           </viewControllerScriptsDirectory>
           <viewControllerScriptsDirectory forControllerName="User">
             <viewScriptFile forActionName="switch"/>
+          </viewControllerScriptsDirectory>
+          <viewControllerScriptsDirectory forControllerName="Request">
+            <viewScriptFile forActionName="done"/>
           </viewControllerScriptsDirectory>
         </viewScriptsDirectory>
         <viewHelpersDirectory/>
