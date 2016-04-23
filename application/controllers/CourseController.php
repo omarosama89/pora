@@ -25,8 +25,10 @@ class CourseController extends Zend_Controller_Action
             
             $data['owner'] = 1;     // user_id_session
             
-            var_dump($data);
             $this->course_model->addCourse($data);
+            mkdir(getcwd().'/files/'.$data['title']);
+            $cid = $data['cid'];
+            $this->redirect('course/list/attr/cid/val/'.$cid);
             // $this->redirect("post/list");
         } else {
             $ownerId = 1;       // get user id
