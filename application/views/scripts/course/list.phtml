@@ -1,4 +1,10 @@
-<?php $isAdmin = true; ?>
+<?php
+  $id = $this->user->id;
+  if($this->user->isAdmin) 
+    $isAdmin = true;
+  else
+    $isAdmin = false;
+?>
 <br /><br />
 <div id="view-content">
 	<!-- <p>View script for controller <b>Course</b> and script/action name <b>list</b></p> -->
@@ -20,7 +26,7 @@
 					echo "<li class='list-group-item col-md-10'>".$course['descr']."</li>";
 				echo "</div>";
 				echo "<div class='form-group'>";
-					echo "<li class='list-group-item col-md-2'>Posted by ".'$username'."</li>";
+					echo "<li class='list-group-item col-md-2'>Posted by ".$this->user->uname."</li>";
 					echo "<li class='list-group-item col-md-10'><a href=".$this->baseUrl().'/material/list/attr/cid/val/'.$course['id'].">Show materials</a></a></li>";
 				echo "</div>";
 				if($isAdmin){

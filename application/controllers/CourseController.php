@@ -6,9 +6,15 @@ class CourseController extends Zend_Controller_Action
     private $course_model = null;
 
     private $category_model = null;
-
+    private $user;
     public function init()
     {
+        $this->auth = Zend_Auth::getInstance();
+        if ($this->auth->hasIdentity()) {
+            $this->view->user = $this->user = $this->auth->getIdentity();
+        }else{
+            $this->redirect('user/login');
+        }
         $this->course_model = new Application_Model_DbTable_Course();
         $this->category_model = new Application_Model_DbTable_Category();
     }
@@ -20,15 +26,15 @@ class CourseController extends Zend_Controller_Action
 
     public function addAction()
     {
+        $ownerId = $this->user->id;
         if($this->_request->isPost()){
             $data = $this->_request->getParams();
-            $data['owner'] = 1;     // user_id_session
+            $data['owner'] = $ownerId;     // user_id_session
             $this->course_model->addCourse($data);
             mkdir(getcwd().'/files/'.$data['title']);
             $cid = $data['cid'];
             $this->redirect('course/list/attr/cid/val/'.$cid);
         } else {
-            $ownerId = 1;       // get user id
             $data = $this->category_model->getCategories(null,null);
             $arr = array();
             foreach ($data as $value) {

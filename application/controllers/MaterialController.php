@@ -7,6 +7,12 @@ class MaterialController extends Zend_Controller_Action
 
     public function init()
     {
+        $this->auth = Zend_Auth::getInstance();
+        if ($this->auth->hasIdentity()) {
+            $this->view->user = $this->user = $this->auth->getIdentity();
+        }else{
+            $this->redirect('user/login');
+        }
         $this->material_model = new Application_Model_DbTable_Material();
         $this->course_model = new Application_Model_DbTable_Course();
     }
@@ -34,19 +40,19 @@ class MaterialController extends Zend_Controller_Action
 
     public function addAction()
     {
+        $ownerId = $this->user->id;
         if($this->_request->isPost()){
             $data = $this->_request->getParams();
             
             $filePath = $this->handle_file(getcwd()."/files/".$this->course_model->getCourseTitle($data['cid']));
             $data['location'] = $filePath;
-            $data['owner'] = 1;     // user_id_session
+            $data['owner'] = $ownerId;     // user_id_session
             
             $this->material_model->addMaterial($data);
             $cid = $data['cid'];
             $this->redirect('material/list/attr/cid/val/'.$cid);
             // $this->redirect("post/list");
         } else {
-            $ownerId = 1;       // get user id
             $data = $this->course_model->getCourses(null,null);
             $arr = array();
             // echo getcwd();

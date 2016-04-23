@@ -9,8 +9,9 @@ class CategoryController extends Zend_Controller_Action
     {
         $this->auth = Zend_Auth::getInstance();
         if ($this->auth->hasIdentity()) {
-                $this->view->user = $this->auth->getIdentity();
-                
+            $this->view->user = $this->user = $this->auth->getIdentity();
+        }else{
+            $this->redirect('user/login');
         }
         $this->category_model = new Application_Model_DbTable_Category();
     }
@@ -29,15 +30,13 @@ class CategoryController extends Zend_Controller_Action
 
     public function addAction()
     {
+        $ownerId = $this->user->id;
         if($this->_request->isPost()){
             $data = $this->_request->getParams();
-            $data['owner'] = 1;     // user_id_session
+            $data['owner'] = $ownerId;     // user_id_session
             $this->category_model->addCategory($data);
             $this->redirect("category/list");
-        } else {
-            $ownerId = 1;       // get user id
-
-            
+        } else {            
             $this->view->form = new Application_Form_AddCategory($ownerId);
         }
     }

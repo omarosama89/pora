@@ -3,23 +3,22 @@
 class UserController extends Zend_Controller_Action
 {
 
+    private $model;
     public function init()
     {
         /* Initialize action controller here */
         $this->auth = Zend_Auth::getInstance();
         if ($this->auth->hasIdentity()) {
-                $identity = $this->auth->getIdentity();
-                $this->view->email = $this->auth->getIdentity()->email;
-                $this->view->pwd = $this->auth->getIdentity()->pwd;
+                $this->view->user = $this->user = $this->auth->getIdentity();
         }
         $this->model=new Application_Model_DbTable_User();
     }
-//---------------------------------------------------------------------------------
+
     public function indexAction()
     {
         // action body
     }
-//------------------------------Add Action-----------------------------------------
+
     public function addAction()
     {
         // action body
@@ -35,7 +34,7 @@ class UserController extends Zend_Controller_Action
         
        $this->view->form=$form;
     }
-//---------------------------------Edit Action--------------------------------------
+
     public function editAction()
     {
         // action body
@@ -55,7 +54,7 @@ class UserController extends Zend_Controller_Action
         }
         $this->render('add');
     }
-//------------------------------------List Action----------------------------------
+
     public function listAction()
     {
         // action body
@@ -64,7 +63,7 @@ class UserController extends Zend_Controller_Action
         $model=new Application_Model_DbTable_User();
         $this->view->listusers=$model->listUsers();
     }
-//----------------------------------------delete Action-----------------------------
+
     public function deleteAction()
     {
         // action body
@@ -80,8 +79,8 @@ class UserController extends Zend_Controller_Action
             }
     
     }
-//--------------------------------------Ban Action---------------------------------
-   public function banAction()
+
+    public function banAction()
     {
         // action body
         $model=new Application_Model_DbTable_User();
@@ -96,7 +95,7 @@ class UserController extends Zend_Controller_Action
             }
     
     }
-//----------------------------------------List Ban---------------------------------
+
     public function listbanAction()
     {
         // action body
@@ -104,7 +103,7 @@ class UserController extends Zend_Controller_Action
         $this->view->listusers=$model->listUsers();
         
     }
-//----------------------------------------Active Action-----------------------------
+
     public function activeAction()
     {
         // action body
@@ -120,7 +119,7 @@ class UserController extends Zend_Controller_Action
             } 
 
     }
-//----------------------------------------login Action-----------------------------
+
     public function loginAction()
     {
      $login_form = new Application_Form_Login();
@@ -168,10 +167,10 @@ class UserController extends Zend_Controller_Action
 
 
     
-}
+    }
 
-//----------------------------------------logout Action-----------------------------
-public function logoutAction(){
+    public function logoutAction()
+    {
 
       /*  Zend_Auth::getInstance()->clearIdentity();
         Zend_Session::destroy();
@@ -179,7 +178,28 @@ public function logoutAction(){
         $storage = new Zend_Auth_Storage_Session();
         $storage->clear();
         $this->render('home');
+    }
+
+    public function blockAction()
+    {
+        $id = $this->_request->getParam('id',-1);
+        $this->model->switchStatus($id);
+        $this->view->listusers = $this->model->listUsers();
+        $this->redirect('user/list');
+    }
+
+    public function switchAction()
+    { 
+        $id = $this->_request->getParam('id',-1);
+        $this->model->switchSudo($id);
+        $this->view->listusers = $this->model->listUsers();
+        $this->redirect('user/list');
+    }
+
+
 }
-//-----------------------------------------------------------------------------------
-}
+
+
+
+
 
