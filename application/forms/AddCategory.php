@@ -24,15 +24,13 @@ class Application_Form_AddCategory extends Zend_Form
 
         $submit = new Zend_Form_Element_Submit('submit');
 
-<<<<<<< HEAD
 
         $this->addElements(array($title,$desc,$id,$submit));
 
-/*        $this->addElements(array($id,$title,$desc,$submit));
->>>>>>> 62fc816913d54e39fd781f7bbc3050ec1be84be1*/
-=======
+//        $this->addElements(array($id,$title,$desc,$submit));
+
+
         $this->addElements(array($title,$desc,$id,$submit));
->>>>>>> 7e2b8f7c5f684c5cebad7b2e4285edc992c41ce8
     }
 
 
