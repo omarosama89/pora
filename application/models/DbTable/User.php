@@ -20,7 +20,6 @@ class Application_Model_DbTable_User extends Zend_Db_Table_Abstract
 		}
 		return $extractedData;
 	}
-
 //----------------------------------------------------------------------------
 	function addUser($data){
 		$row = $this->createRow();
@@ -36,7 +35,6 @@ class Application_Model_DbTable_User extends Zend_Db_Table_Abstract
 
 		return $row->save();
 	}
-
 //------------------------------------------------------------------------------
  function listUsers(){
  	// var_dump($this->find($id)->toArray());
@@ -86,6 +84,4 @@ function editUser($id,$data){
 	}
 
 //-----------------------------------------------------------------------------
-
-
 }

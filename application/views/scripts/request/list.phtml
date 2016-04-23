@@ -1,12 +1,9 @@
 <h1>List All Request </h1>
- 
-<?php var_dump( $this->user);?> 
- 				 <table border='3'>
+<!--  <?php var_dump( $this->user); exit; ?> -->
+  				 <table border='3'>
  				            <tr>
-            					
             					<th>content</th>
             					<th>edit</th>
-
                				</tr>
             <?php  
                 if($this->listrequest)
@@ -16,16 +13,8 @@
  				         	
                   <tr>
                     <td><?php echo $req['content'];?></td>
-                    
                     <td><?php echo "<a href='".$this->baseUrl()."/index.php/request/delete/id/".$req['id']."'>delete</a>";?></td>
-                  </tr>
- 				         
-              
-			    	
-   				<?php } ?>
-
-  						
-
-
- 				<?php } ?>
+                  </tr>           
+			   	<?php } ?>
+      <?php } ?>
 </table>

@@ -37,7 +37,4 @@ function deleteRequest($id){
 		//echo "id is:$id" ; exit;
        return $this->delete('id='.$id);
 	}
-
-
 }
-
