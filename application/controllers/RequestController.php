@@ -18,7 +18,7 @@ class RequestController extends Zend_Controller_Action
         // action body
     }
 
-    public function editAction()
+    public function listAction()
     {
         // action body
     }

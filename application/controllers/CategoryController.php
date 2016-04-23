@@ -7,6 +7,11 @@ class CategoryController extends Zend_Controller_Action
 
     public function init()
     {
+        $this->auth = Zend_Auth::getInstance();
+        if ($this->auth->hasIdentity()) {
+                $this->view->user = $this->auth->getIdentity();
+                
+        }
         $this->category_model = new Application_Model_DbTable_Category();
     }
 

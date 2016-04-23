@@ -26,7 +26,8 @@ class Application_Model_DbTable_User extends Zend_Db_Table_Abstract
 		$row = $this->createRow();
 		$row->uname = $data['uname'];
 		$row->email = $data['email'];
-		$row->pwd = md5($data['password']);
+		$row->pwd = md5($data['pwd']);
+		//echo $row->pwd.":".$data['pwd'];exit;
 		$row->fname = $data['fname'];
 		$row->lname = $data['lname'];
 		//$row->img = $data['image'];
