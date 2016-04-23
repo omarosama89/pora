@@ -1,5 +1,9 @@
-<?php 
-  $isAdmin = false;
+<?php
+  $id = $this->user->id;
+  if($this->user->isAdmin) 
+    $isAdmin = true;
+  else
+    $isAdmin = false;
 ?>
 <html>
 <head>
@@ -13,19 +17,12 @@
       <a class="navbar-brand" href="#">PORA</a>
     </div>
     <ul class="nav navbar-nav">
+      <li><a href="<?php echo $this->baseUrl(); ?>/category/list">Categories</a></li>
+      <li><a href="<?php echo $this->baseUrl(); ?>/course/list">Cources</a></li>
+      <li><a href="<?php echo $this->baseUrl(); ?>/material/list">Materials</a></li>
+      <li><a href="<?php echo $this->baseUrl(); ?>/user/edit/id/<?php echo $id?>">Edit Profile</a></li>
       <?php if($isAdmin){ ?>
-        <li><a href="<?php echo $this->baseUrl(); ?>/category/list-crud">Categories</a></li>
-      <?php }else{ ?>
-        <li><a href="<?php echo $this->baseUrl(); ?>/category/list">Categories</a></li>
-      <?php }?>
-      <?php if($isAdmin){ ?>
-        <li><a href="<?php echo $this->baseUrl(); ?>/course/list-crud">Cources</a></li>
-      <?php }else{ ?>
-        <li><a href="<?php echo $this->baseUrl(); ?>/course/list">Cources</a></li>
-      <?php }?>
-      <li><a href="<?php echo $this->baseUrl(); ?>/user/edit">Edit Profile</a></li>
-      <?php if($isAdmin){ ?>
-        <li><a href="<?php echo $this->baseUrl(); ?>/user/list-crud">List users</a></li>
+        <li><a href="<?php echo $this->baseUrl(); ?>/user/list">List users</a></li>
       <?php } ?>
       <li><a class="btn btn-success" href="<?php echo $this->baseUrl(); ?>/request/add">Add request</a></li>
       <!-- <li><a href="<?php echo $this->baseUrl(); ?>/index.php/user/listban">List Ban</a></li> -->

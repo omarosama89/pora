@@ -1,43 +1,49 @@
- 				 <table border='6'>
- 				            <tr>
-            					<th>userName</th>
-            					<th>email</th>
-            					<th>country</th>
-            					<th>gender</th>
-            					<th>edit</th>
-            					<th>delete</th>
-            					<th>ban</th>
-            				
-
-       					    </tr>
-            <?php  
-                if($this->listusers)
- 			         {
-       				    
- 				         for($i=0;$i<count($this->listusers);$i++){
- 					       if($this->listusers[$i]['isActive']==1 && $this->listusers[$i]['isAdmin']==0){ 
-                 
-                    if( $this->listusers[$i]['id'] == $this->userid){
-                  ?>
-              <!-- <?php var_dump($this->listusers);?>-->
- 				         
-
-       					<tr>
- 								<td><?php echo $this->listusers[$i]['uname'];?></td>
- 								<td><?php echo $this->listusers[$i]['email'];?></td>
- 								<td><?php echo $this->listusers[$i]['country'];?></td>
- 								<td><?php echo $this->listusers[$i]['gender'];?></td>
- 								<td><?php echo "<a href='".$this->baseUrl()."/index.php/user/edit/id/".$this->listusers[$i]['id']."'>edit</a>";?></td>
- 								<td><?php echo "<a href='".$this->baseUrl()."/index.php/user/delete/id/".$this->listusers[$i]['id']."'>delete</a>";?></td>
-                <td><?php echo "<a href='".$this->baseUrl()."/index.php/user/ban/id/".$this->listusers[$i]['id']."'>Ban</a>";?></td>
- 								
- 							</tr>
- 							
- 					 
- 				 			<?php }?>
-  				<?php }} ?>
-
-  						</table>
-
-
- 				<?php } ?>
+<?php
+  $id = $this->user->id;
+  if($this->user->isAdmin) {
+    $isAdmin = true;
+  }else{
+    $isAdmin = false;
+  }
+?>
+<br /><br />
+<div id="view-content">
+  <div class="form-group well row">
+    <h2 class="col-md-4">Materials</h2>
+    <?php if($isAdmin) { ?>
+      <a href="<?php echo $this->baseUrl();?>/material/add" class="btn btn-success col-md-1">Add Material</a>
+    <?php }?>
+  </div>
+  <?php foreach ($this->listusers as $user) {
+    $sudo_str = $user['isAdmin']? "Admin" : "Regular";
+    $ban_str = $user['isActive']? "Active" : "Blocked";
+    echo "<div class='well'>";
+      echo "<div class='well row'>";
+        echo "<div class='form-group'>";
+          echo "<li class='list-group-item col-md-2'>Username :</li>";
+          echo "<li class='list-group-item col-md-10'>".$user['uname']."</li>";
+        echo "</div>";
+        echo "<div class='form-group'>";
+          echo "<li class='list-group-item col-md-2'>Email :</li>";
+          echo "<li class='list-group-item col-md-10'>".$user['email']."</li>";
+        echo "</div>";
+        echo "<div class='form-group'>";
+          echo "<li class='list-group-item col-md-2'>Full name :</li>";
+          echo "<li class='list-group-item col-md-10'>".$user['fname']."&nbsp;".$user['lname']."</li>";
+        echo "</div>";
+        echo "<div class='form-group'>";
+          echo "<li class='list-group-item col-md-2'>Country :</li>";
+          echo "<li class='list-group-item col-md-10'>".$user['country']."</li>";
+        echo "</div>";
+        echo "<div class='form-group'>";
+          echo "<li class='list-group-item col-md-2'>Gender :</li>";
+          echo "<li class='list-group-item col-md-10'>".$user['gender']."</li>";
+        echo "</div>";
+        echo "<div class='form-group'>";
+          echo "<li class='list-group-item col-md-2'>Actions :</li>";
+          echo "<li class='list-group-item col-md-10'>".$ban_str."(<a href=".$this->baseUrl().'/user/block/id/'.$user['id'].">Switch</a>)&nbsp;|&nbsp;".$sudo_str."&nbsp;(<a href=".$this->baseUrl().'/user/switch/id/'.$user['id'].">Switch</a>)</li>";
+        echo "</div>";
+      echo "</div>";
+    echo "</div>";
+  } ?>
+</div>

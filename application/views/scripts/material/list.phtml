@@ -1,4 +1,10 @@
-<?php $isAdmin = true; ?>
+<?php
+  $id = $this->user->id;
+  if($this->user->isAdmin) 
+    $isAdmin = true;
+  else
+    $isAdmin = false;
+?>
 <br /><br />
 <div id="view-content">
 	<div class="form-group well row">
@@ -25,7 +31,7 @@
 					echo "</div>";
 				}
 				echo "<div class='form-group'>";
-					echo "<li class='list-group-item col-md-2'>Posted by ".'$username'."</li>";
+					echo "<li class='list-group-item col-md-2'>Posted by ".$this->user->uname."</li>";
 				echo "</div>";
 			echo "</div>";
 		echo "</div>";

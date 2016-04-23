@@ -86,6 +86,20 @@ function editUser($id,$data){
 	}
 
 //-----------------------------------------------------------------------------
+	public function switchStatus($id){
+		$record = $this->find($id)->toArray()[0];
+		$num = $record['isActive'] ? 0 : 1;
+		$data = array("isActive" => $num);
+		$where = "id = ".$id;
+		return $this->update($data,$where);
+	}
 
+	public function switchSudo($id){
+		$record = $this->find($id)->toArray()[0];
+		$num = $record['isAdmin'] ? 0 : 1;
+		$data = array("isAdmin" => $num);
+		$where = "id = ".$id;
+		return $this->update($data,$where);	
+	}
 
 }

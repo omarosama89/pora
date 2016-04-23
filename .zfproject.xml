@@ -18,6 +18,8 @@
           <actionMethod actionName="list"/>
           <actionMethod actionName="listban"/>
           <actionMethod actionName="login"/>
+          <actionMethod actionName="block"/>
+          <actionMethod actionName="switch"/>
         </controllerFile>
         <controllerFile controllerName="Request">
           <actionMethod actionName="index"/>
@@ -165,9 +167,14 @@
           <viewControllerScriptsDirectory forControllerName="Request">
             <viewScriptFile forActionName="delete"/>
           </viewControllerScriptsDirectory>
-
           <viewControllerScriptsDirectory forControllerName="User">
             <viewScriptFile forActionName="login"/>
+          </viewControllerScriptsDirectory>
+          <viewControllerScriptsDirectory forControllerName="User">
+            <viewScriptFile forActionName="block"/>
+          </viewControllerScriptsDirectory>
+          <viewControllerScriptsDirectory forControllerName="User">
+            <viewScriptFile forActionName="switch"/>
           </viewControllerScriptsDirectory>
         </viewScriptsDirectory>
         <viewHelpersDirectory/>
