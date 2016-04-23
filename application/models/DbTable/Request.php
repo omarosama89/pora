@@ -4,7 +4,7 @@ class Application_Model_DbTable_Request extends Zend_Db_Table_Abstract
 {
 
     protected $_name = 'request';
-    private $_attributes = array();
+    private $_attributes = array('content','owner');
 
 	private function extractData($data,$filter){
 		$extractedData = array();
@@ -20,7 +20,19 @@ class Application_Model_DbTable_Request extends Zend_Db_Table_Abstract
 		}
 		return $extractedData;
 	}
-
+//--------------------------------------------------------------------
+	function addRequest($data){
+		$data = $this->extractData($data);
+		return $this->insert($data);
+		
+	}
+//--------------------------------------------------------------------
+	function listRequest(){
+ 	// var_dump($this->find($id)->toArray());
+ 	// exit;
+ 	return $this->fetchAll()->toArray();
+    }	
+//---------------------------------------------------------------------
 
 }
 

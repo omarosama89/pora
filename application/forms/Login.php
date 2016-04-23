@@ -44,9 +44,5 @@ class Application_Form_Login extends Zend_Form
             array('Description', array('placement' => 'prepend')),
             'Form'
         ));
-
    }
-
-
 }
-
