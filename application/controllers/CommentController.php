@@ -23,6 +23,7 @@ class CommentController extends Zend_Controller_Action
             $data['owner']= 2;
             $data['mid']= 3;
             $this->comment_model->addComment($data);
+            $this->redirect('comment/list');
 
         }
             //$ownerId = 1; ///will get by session
