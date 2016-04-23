@@ -150,7 +150,7 @@ class UserController extends Zend_Controller_Action
                     $storage->write($authAdapter->getResultRowObject());
                     $idd=$auth->getIdentity()->id;
                     echo $idd;
-                    $this->redirect('user/list?id='.$idd); 
+                    $this->redirect('category/list'); 
                 }
                 else{
                     //echo "not valid";

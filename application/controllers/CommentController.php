@@ -7,6 +7,12 @@ class CommentController extends Zend_Controller_Action
 
     public function init()
     {
+        $this->auth = Zend_Auth::getInstance();
+        if ($this->auth->hasIdentity()) {
+            $this->view->user = $this->user = $this->auth->getIdentity();
+        }else{
+            $this->redirect('user/login');
+        }
     	$this->comment_model = new Application_Model_DbTable_Comment();
         $this->material_model = new Application_Model_DbTable_Material();
     	
@@ -18,22 +24,24 @@ class CommentController extends Zend_Controller_Action
         // action body
     }
     public function addAction(){
+        $ownerId = $this->user->id;
         if($this->getRequest()->isPost()){
             $data = $this->getRequest()->getParams();
-            $data['owner']= 2;
-            $data['mid']= 3;
+            $data['owner']= $ownerId;
+            $mid = $data['mid'];
             $this->comment_model->addComment($data);
-            $this->redirect('comment/list');
+            $this->redirect('comment/list/attr/mid/val/'.$mid);
 
         }
             //$ownerId = 1; ///will get by session
             //$matId = 1; /// get the mat id
-            $this->view->form = new Application_Form_Comment();
-            $this->view->flag = 1;
+        $mid = $this->_request->getParam('mid',-1);
+        $this->view->form = new Application_Form_Comment($mid);
+        $this->view->flag = 1;
     }
 
     public function listAction(){
-        $mid = 3;
+        $mid = $this->_request->getParam('val',-1);
         $this->view->comments = $this->comment_model->listComments($mid);
 
     }

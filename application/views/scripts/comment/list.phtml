@@ -1,21 +1,34 @@
+<?php
+  $id = $this->user->id;
+  if($this->user->isAdmin) 
+    $isAdmin = true;
+  else
+    $isAdmin = false;
+?>
 <br /><br />
 <div id="view-content" class='container'>
-	<p>View script for controller <b>comment</b> and script/action name <b>list</b></p>
-	<?php for($i=0;$i<count($this->comments);$i++){
+	<!-- <p>View script for controller <b>comment</b> and script/action name <b>list</b></p> -->
+	<div class="form-group well row">
+		<h2 class="col-md-4">Comments</h2>
+	</div>
+	
+	<?php foreach ($this->comments as $comment) {
 		echo "<div class='well'>";
 			echo "<div class='well row'>";
 				echo "<div class='form-group'>";
 					echo "<li class='list-group-item col-md-2'>Owner :</li>";
-					echo "<li class='list-group-item col-md-10'>".$this->comments[$i]['owner']."</li>";
+					echo "<li class='list-group-item col-md-10'>".$comment['owner']."</li>";
 				echo "</div>";
 				echo "<div class='form-group'>";
 					echo "<li class='list-group-item col-md-2'>Content :</li>";
-					echo "<li class='list-group-item col-md-10'>".$this->comments[$i]['content']."</li>";
+					echo "<li class='list-group-item col-md-10'>".$comment['content']."</li>";
 				echo "</div>";
-				echo "<div class='form-group'>";
-					echo "<li class='list-group-item col-md-2'>Action :</li>";
-					echo "<li class='list-group-item col-md-10'><a href=".$this->baseUrl().'/index.php/comment/edit/id/'.$this->comments[$i]['id'].">Edit</a>&nbsp;|&nbsp;<a href=".$this->baseUrl().'/index.php/comment/delete/id/'.$this->comments[$i]['id'].">Delete</a></li>";
-				echo "</div>";
+				if($id == $comment['owner']){
+					echo "<div class='form-group'>";
+						echo "<li class='list-group-item col-md-2'>Action :</li>";
+						echo "<li class='list-group-item col-md-10'><a href=".$this->baseUrl().'/index.php/comment/edit/id/'.$comment['id'].">Edit</a>&nbsp;|&nbsp;<a href=".$this->baseUrl().'/index.php/comment/delete/id/'.$comment['id'].">Delete</a></li>";
+					echo "</div>";
+				}
 			echo "</div>";
 		echo "</div>";
 	} 
