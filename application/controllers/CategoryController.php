@@ -7,6 +7,11 @@ class CategoryController extends Zend_Controller_Action
 
     public function init()
     {
+        $this->auth = Zend_Auth::getInstance();
+        if ($this->auth->hasIdentity()) {
+                $this->view->user = $this->auth->getIdentity();
+                
+        }
         $this->category_model = new Application_Model_DbTable_Category();
     }
 
@@ -27,12 +32,11 @@ class CategoryController extends Zend_Controller_Action
         if($this->_request->isPost()){
             $data = $this->_request->getParams();
             $data['owner'] = 1;     // user_id_session
-            
-            // var_dump($data);
             $this->category_model->addCategory($data);
             $this->redirect("category/list");
         } else {
             $ownerId = 1;       // get user id
+<<<<<<< HEAD
             
             $this->view->form = new Application_Form_AddCategory($ownerId);
         }
@@ -73,6 +77,19 @@ class CategoryController extends Zend_Controller_Action
         $val = $this->_request->getParam('val',null);
         $this->view->categories = $this->category_model->getCategories($attr,$val);
     }*/
+=======
+            $this->view->form = new Application_Form_AddCategory();
+        }
+    }
+
+
+    // public function listCRUDAction()
+    // {
+    //     $attr = $this->_request->getParam('attr',null);
+    //     $val = $this->_request->getParam('val',null);
+    //     $this->view->categories = $this->category_model->getCategories($attr,$val);
+    // }
+>>>>>>> 7e2b8f7c5f684c5cebad7b2e4285edc992c41ce8
 
 /*    public function editAction()
     {
@@ -105,15 +122,6 @@ class CategoryController extends Zend_Controller_Action
 
 
 }*/
-
-// $id = $this->getRequest()->getParam('id');
-// $form = new Application_Form_User();
-// $user = $this->model->getUserById($id);
-// $form->populate($user[0]);
-// $form->setAction('../../add');
-// $this->view->form = $form;
-// $this->render('add');
-
 
 
 

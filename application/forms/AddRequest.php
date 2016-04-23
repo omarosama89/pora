@@ -7,7 +7,4 @@ class Application_Form_AddRequest extends Zend_Form
     {
         /* Form Elements & Other Definitions Here ... */
     }
-
-
 }
-

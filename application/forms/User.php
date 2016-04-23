@@ -64,8 +64,8 @@ class Application_Form_User extends Zend_Form
             'filters'    => array('StringTrim'),
         ));
 //------------------------------------------------------------------------------
-      // add upload photo element
-       /* $element = new Zend_Form_Element_File('img');
+   /*   // add upload photo element
+        $element = new Zend_Form_Element_File('img');
         $element->setLabel('Upload an image:')
                 ->setDestination("upload/user-images");
         // ensure only 1 file

@@ -1,4 +1,5 @@
-<?php
+
+ <?php
 
 class UserController extends Zend_Controller_Action
 {
@@ -128,8 +129,7 @@ class UserController extends Zend_Controller_Action
      $data=$this->getRequest()->getParams();
      //var_dump($data);
      $email= $this->_request->getParam('email');
-     $password= $this->_request->getParam('pwd');
-        //var_dump($data);
+     $password=$this->_request->getParam('pwd');
         if($this->getRequest()->isPost()){
             if($login_form->isValid($data)){
                  // get the default db adapter
@@ -138,24 +138,28 @@ class UserController extends Zend_Controller_Action
                 $authAdapter = new Zend_Auth_Adapter_DbTable($db,'user','email','pwd');
                 // to compare between data 
                 $authAdapter->setIdentity($email);
-                $authAdapter->setCredential(md5($pwd));
+                //echo md5($password).":".md5('123');exit;
+                $authAdapter->setCredential(md5($password));
                 //  to check data is  valied  or  not  by  ( isValid() )
                 $result = $authAdapter->authenticate();
-               var_dump($result);
+              // var_dump($result);
                 if($result->isValid()){
+                   // var_dump($result);
                     //echo "yeeess valid user";
                     //save data to user 
                     $auth =Zend_Auth::getInstance();
                     $storage = $auth->getStorage();
-                    $storage->write($authAdapter->getResultRowObject(array('email' , 'id' , 'uname')));
+                    $storage->write($authAdapter->getResultRowObject());
                     $idd=$auth->getIdentity()->id;
                     echo $idd;
-
                     $this->redirect('user/list?id='.$idd); 
                 }
                 else{
                     //echo "not valid";
-                    $this->redirect('user/login'); 
+                    $this->view->errorMessage = "sorry , please check your password or mail"; 
+                    $this->render('login'); 
+                               
+
                 }
             }
         }
