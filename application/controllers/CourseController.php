@@ -22,12 +22,11 @@ class CourseController extends Zend_Controller_Action
     {
         if($this->_request->isPost()){
             $data = $this->_request->getParams();
-            
             $data['owner'] = 1;     // user_id_session
-            
-            var_dump($data);
             $this->course_model->addCourse($data);
-            // $this->redirect("post/list");
+            mkdir(getcwd().'/files/'.$data['title']);
+            $cid = $data['cid'];
+            $this->redirect('course/list/attr/cid/val/'.$cid);
         } else {
             $ownerId = 1;       // get user id
             $data = $this->category_model->getCategories(null,null);
