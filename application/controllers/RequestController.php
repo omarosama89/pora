@@ -42,7 +42,18 @@ class RequestController extends Zend_Controller_Action
     public function deleteAction()
     {
         // action body
+        $model=new Application_Model_DbTable_Request();
+        $this->view->listrequest=$model->listRequest();
+        $id = $this->getRequest()->getParam('id');
+            if($model->deleteRequest($id)){
+                $this->redirect('request/list');
+            }
+            else{
+                $this->redirect('request/list');
+            }
+    
     }
+//-------------------------------------------------------------------------------
 }
 
 

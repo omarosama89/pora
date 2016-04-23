@@ -33,6 +33,11 @@ class Application_Model_DbTable_Request extends Zend_Db_Table_Abstract
  	return $this->fetchAll()->toArray();
     }	
 //---------------------------------------------------------------------
+function deleteRequest($id){
+		//echo "id is:$id" ; exit;
+       return $this->delete('id='.$id);
+	}
+
 
 }
 
