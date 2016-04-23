@@ -2,9 +2,22 @@
 <div id="view-content" class='container'>
 	<p>View script for controller <b>comment</b> and script/action name <b>list</b></p>
 	<?php for($i=0;$i<count($this->comments);$i++){
-		echo "<h5>".$this->comments[$i]['content']."<a href='".$this->baseUrl()."/index.php/comment/delete/id/".$this->comments[$i]['id']."' class='btn btn-success'>delete</a><a href='".$this->baseUrl()."/index.php/comment/edit/id/".$this->comments[$i]['id']."' class='btn btn-primary'>edit</a></h5>";	
-		echo "<br>";
-		echo "<br>";
+		echo "<div class='well'>";
+			echo "<div class='well row'>";
+				echo "<div class='form-group'>";
+					echo "<li class='list-group-item col-md-2'>Owner :</li>";
+					echo "<li class='list-group-item col-md-10'>".$this->comments[$i]['owner']."</li>";
+				echo "</div>";
+				echo "<div class='form-group'>";
+					echo "<li class='list-group-item col-md-2'>Content :</li>";
+					echo "<li class='list-group-item col-md-10'>".$this->comments[$i]['content']."</li>";
+				echo "</div>";
+				echo "<div class='form-group'>";
+					echo "<li class='list-group-item col-md-2'>Action :</li>";
+					echo "<li class='list-group-item col-md-10'><a href=".$this->baseUrl().'/index.php/comment/edit/id/'.$this->comments[$i]['id'].">Edit</a>&nbsp;|&nbsp;<a href=".$this->baseUrl().'/index.php/comment/delete/id/'.$this->comments[$i]['id'].">Delete</a></li>";
+				echo "</div>";
+			echo "</div>";
+		echo "</div>";
 	} 
 	 ?>
 </div>

@@ -34,11 +34,10 @@ class CategoryController extends Zend_Controller_Action
         } else {
             $ownerId = 1;       // get user id
             
-            $this->view->form = new Application_Form_AddCategory();
+            $this->view->form = new Application_Form_AddCategory($ownerId);
         }
     }
 
-<<<<<<< HEAD
     public function deleteAction(){
         $id = $this->getRequest()->getParam('id');
         if($id){
@@ -66,16 +65,16 @@ class CategoryController extends Zend_Controller_Action
             $this->redirect('category/list');
         };
     }
+}
 
-=======
-    public function listCRUDAction()
+    /*public function listCRUDAction()
     {
         $attr = $this->_request->getParam('attr',null);
         $val = $this->_request->getParam('val',null);
         $this->view->categories = $this->category_model->getCategories($attr,$val);
-    }
+    }*/
 
-    public function editAction()
+/*    public function editAction()
     {
         if($this->_request->isPost()){
             $data = $this->_request->getParams();
@@ -102,10 +101,10 @@ class CategoryController extends Zend_Controller_Action
         $this->category_model->deleteCategory($id);
         $this->redirect('category/list');
     }
->>>>>>> 62fc816913d54e39fd781f7bbc3050ec1be84be1
 
 
-}
+
+}*/
 
 // $id = $this->getRequest()->getParam('id');
 // $form = new Application_Form_User();

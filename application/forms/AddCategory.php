@@ -8,12 +8,12 @@ class Application_Form_AddCategory extends Zend_Form
         parent::__construct();
 	}
 
-	private $id;
+	/*private $id;
 	private $arr;
 	public function __construct($id = null){
 		$this->id = $id;
         parent::__construct();
-	}
+	}*/
 
     public function init()
     {
@@ -30,11 +30,11 @@ class Application_Form_AddCategory extends Zend_Form
 
         $submit = new Zend_Form_Element_Submit('submit');
 
-<<<<<<< HEAD
+
         $this->addElements(array($title,$desc,$id,$submit));
-=======
-        $this->addElements(array($id,$title,$desc,$submit));
->>>>>>> 62fc816913d54e39fd781f7bbc3050ec1be84be1
+
+/*        $this->addElements(array($id,$title,$desc,$submit));
+>>>>>>> 62fc816913d54e39fd781f7bbc3050ec1be84be1*/
     }
 
 
