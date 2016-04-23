@@ -20,6 +20,7 @@ class Application_Model_DbTable_User extends Zend_Db_Table_Abstract
 		}
 		return $extractedData;
 	}
+
 //----------------------------------------------------------------------------
 	function addUser($data){
 		$row = $this->createRow();
@@ -35,6 +36,7 @@ class Application_Model_DbTable_User extends Zend_Db_Table_Abstract
 
 		return $row->save();
 	}
+
 //------------------------------------------------------------------------------
  function listUsers(){
  	// var_dump($this->find($id)->toArray());
@@ -84,8 +86,6 @@ function editUser($id,$data){
 	}
 
 //-----------------------------------------------------------------------------
-<<<<<<< HEAD
-=======
 	public function switchStatus($id){
 		$record = $this->find($id)->toArray()[0];
 		$num = $record['isActive'] ? 0 : 1;
@@ -102,5 +102,4 @@ function editUser($id,$data){
 		return $this->update($data,$where);	
 	}
 
->>>>>>> 3880c0a0a55db9389a8c16502256e13f3f666c32
 }

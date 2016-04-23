@@ -1,46 +1,3 @@
-<<<<<<< HEAD
- 				 <table border='6'>
- 				            <tr>
-            					<th>userName</th>
-            					<th>email</th>
-            					<th>country</th>
-            					<th>gender</th>
-            					<th>edit</th>
-            					<th>delete</th>
-            					<th>ban</th>
-            				
-
-       					    </tr>
-            <?php  
-                if($this->listusers)
- 			         {
-       				    
- 				         for($i=0;$i<count($this->listusers);$i++){
- 					       if($this->listusers[$i]['isActive']==1 && $this->listusers[$i]['isAdmin']==0){ 
-                 
-                    if( $this->listusers[$i]['id'] == $this->userid){
-                  ?>
-              <!-- <?php var_dump($this->listusers);?>-->
- 				         
-
-       					<tr>
- 								<td><?php echo $this->listusers[$i]['uname'];?></td>
- 								<td><?php echo $this->listusers[$i]['email'];?></td>
- 								<td><?php echo $this->listusers[$i]['country'];?></td>
- 								<td><?php echo $this->listusers[$i]['gender'];?></td>
- 								<td><?php echo "<a href='".$this->baseUrl()."/index.php/user/edit/id/".$this->listusers[$i]['id']."'>edit</a>";?></td>
- 								<td><?php echo "<a href='".$this->baseUrl()."/index.php/user/delete/id/".$this->listusers[$i]['id']."'>delete</a>";?></td>
-                <td><?php echo "<a href='".$this->baseUrl()."/index.php/user/ban/id/".$this->listusers[$i]['id']."'>Ban</a>";?></td>
- 								
- 							</tr>
- 							
- 					 
- 				 			<?php }?>
-  				<?php }} ?>
-
-  						</table>
- 				<?php } ?>
-=======
 <?php
   $id = $this->user->id;
   if($this->user->isAdmin) {
@@ -90,4 +47,3 @@
     echo "</div>";
   } ?>
 </div>
->>>>>>> 3880c0a0a55db9389a8c16502256e13f3f666c32
