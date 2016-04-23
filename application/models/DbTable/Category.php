@@ -46,10 +46,6 @@ class Application_Model_DbTable_Category extends Zend_Db_Table_Abstract
 		$this->insert($data);
 	}
 
-<<<<<<< HEAD
-	public function deleteCategory($id){
-		return $this->delete('id='.$id);
-	}
 
 	function getCategoryById($id){
 		return $this->find($id)->toArray();
@@ -61,7 +57,6 @@ class Application_Model_DbTable_Category extends Zend_Db_Table_Abstract
 	}
 
 
-=======
 	public function updateCategory($id,$data){
 		$data = $this->extractData($data,array('title','descr'));
 		$where = $this->getAdapter()->quoteInto('id = ?', $id);
@@ -69,10 +64,9 @@ class Application_Model_DbTable_Category extends Zend_Db_Table_Abstract
 	}
 
 	public function deleteCategory($id){
-		// echo $id;exit;
 		$where = 'id = '.$id;
 		$this->delete($where);
 	}
->>>>>>> 62fc816913d54e39fd781f7bbc3050ec1be84be1
+
 }
 
