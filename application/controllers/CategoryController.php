@@ -43,6 +43,36 @@ class CategoryController extends Zend_Controller_Action
         }
     }
 
+<<<<<<< HEAD
+    public function deleteAction(){
+        $id = $this->getRequest()->getParam('id');
+        if($id){
+            if($this->category_model->deleteCategory($id)){
+                $this->redirect('category/list');    
+            }
+        }
+        else{
+            $this->redirect('category/list');
+        }
+    }
+
+    public function editAction(){
+        $id = $this->getRequest()->getParam('id');
+        $category = $this->category_model->getCategories("id",$id);
+        $form = new Application_Form_AddCategory();
+        $form->populate($category[0]);
+        $this->view->form = $form;
+        $this->render('add');
+        
+        if($this->getRequest()->isPost()){
+            $data = $this->getRequest()->getParams();
+            $id = $this->getRequest()->getParam('id');
+            $editcategory = $this->category_model->editCategory($id,$data);
+            $this->redirect('category/list');
+        };
+    }
+
+=======
     public function listCRUDAction()
     {
         $attr = $this->_request->getParam('attr',null);
@@ -77,6 +107,7 @@ class CategoryController extends Zend_Controller_Action
         $this->category_model->deleteCategory($id);
         $this->redirect('category/list');
     }
+>>>>>>> 62fc816913d54e39fd781f7bbc3050ec1be84be1
 
 
 }

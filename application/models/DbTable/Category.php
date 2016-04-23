@@ -5,7 +5,7 @@ class Application_Model_DbTable_Category extends Zend_Db_Table_Abstract
 
     protected $_name = 'category';
 
-    private $_attributes = array('title','descr','owner');
+    private $_attributes = array('id','title','descr','owner');
 
 	private function extractData($data,$filter){
 		$extractedData = array();
@@ -20,6 +20,10 @@ class Application_Model_DbTable_Category extends Zend_Db_Table_Abstract
 			}
 		}
 		return $extractedData;
+	}
+	public function getCategoryTitle($id){
+		$record = $this->find($id)->toArray()[0];
+		return $record['title'];
 	}
 
 	public function getCategory($id){
@@ -42,6 +46,22 @@ class Application_Model_DbTable_Category extends Zend_Db_Table_Abstract
 		$this->insert($data);
 	}
 
+<<<<<<< HEAD
+	public function deleteCategory($id){
+		return $this->delete('id='.$id);
+	}
+
+	function getCategoryById($id){
+		return $this->find($id)->toArray();
+	}
+
+	public function editCategory($id,$data){
+		$data = $this->extractData($data);
+		return $this->update($data,'id='.$id);
+	}
+
+
+=======
 	public function updateCategory($id,$data){
 		$data = $this->extractData($data,array('title','descr'));
 		$where = $this->getAdapter()->quoteInto('id = ?', $id);
@@ -53,5 +73,6 @@ class Application_Model_DbTable_Category extends Zend_Db_Table_Abstract
 		$where = 'id = '.$id;
 		$this->delete($where);
 	}
+>>>>>>> 62fc816913d54e39fd781f7bbc3050ec1be84be1
 }
 
