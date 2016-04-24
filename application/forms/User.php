@@ -65,19 +65,20 @@ class Application_Form_User extends Zend_Form
         ));
 //------------------------------------------------------------------------------
       // add upload photo element
-      /*  $element = new Zend_Form_Element_File('img');
-        $element->setLabel('Upload an image:')
-                ->setDestination("upload/user-images");
-        // ensure only 1 file
-		$element->addValidator('Count', false, 1);
-		// limit to 100K
-		$element->addValidator('Size', false, 10240000);
-		// only JPEG, PNG, and GIFs
-		$element->addValidator('Extension', false, 'jpg,png,gif');
-		$this->addElement($element, 'image');
-		$this->setAttrib('enctype', 'multipart/form-data');*/
+  //       $element = new Zend_Form_Element_File('img');
+  //       $element->setLabel('Upload an image:')
+  //               ->setDestination("upload/user-images");
+  //       // ensure only 1 file
+		// $element->addValidator('Count', false, 1);
+		// // limit to 100K
+		// $element->addValidator('Size', false, 10240000);
+		// // only JPEG, PNG, and GIFs
+		// $element->addValidator('Extension', false, 'jpg,png,gif');
+		// $this->addElement($element, 'image');
+		// $this->setAttrib('enctype', 'multipart/form-data');
 //----------------------------------------------------------------------------------
 		// add gender element
+        // -----------
          $gender = new Zend_Form_Element_Radio('gender');
 	     $gender->setLabel('Gender:')->addMultiOptions(array(
 	        'male' => 'Male',

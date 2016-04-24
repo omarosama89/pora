@@ -22,15 +22,15 @@ class MaterialController extends Zend_Controller_Action
         // action body
     }
 
-    private function handle_file($path){
+    private function handle_file($root,$path){
         // exit;
         $upload = new Zend_File_Transfer_Adapter_Http();
-        $upload->setDestination($path);
+        $upload->setDestination($root,$path);
 
         try {
             // This takes care of the moving and making sure the file is there
             $upload->receive();
-            return $upload->getFileName();
+            return $path."/".$upload->getFileName('file',$path);
             // Dump out all the file info
             Zend_Debug::dump($upload->getFileInfo());
         } catch (Zend_File_Transfer_Exception $e) {
@@ -44,7 +44,7 @@ class MaterialController extends Zend_Controller_Action
         if($this->_request->isPost()){
             $data = $this->_request->getParams();
             
-            $filePath = $this->handle_file(getcwd()."/files/".$this->course_model->getCourseTitle($data['cid']));
+            $filePath = $this->handle_file(getcwd()."/","files/".$this->course_model->getCourseTitle($data['cid']));
             $data['location'] = $filePath;
             $data['owner'] = $ownerId;     // user_id_session
             

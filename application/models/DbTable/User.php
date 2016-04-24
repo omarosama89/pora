@@ -6,7 +6,7 @@ class Application_Model_DbTable_User extends Zend_Db_Table_Abstract
     protected $_name = 'user';
     private $_attributes = array('uname','email','pwd','fname','lname','gender','country');
 
-	private function extractData($data,$filter){
+	private function extractData($data,$filter=null){
 		$extractedData = array();
 		if(isset($filter)){
 			$attrs = $filter;
