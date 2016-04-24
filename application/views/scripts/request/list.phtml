@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <h1>List All Request </h1>
   <?php var_dump( $this->user); exit; ?> 
   				 <table border='3'>
@@ -18,3 +19,39 @@
 			   	<?php } ?>
       <?php } ?>
 </table>
+=======
+<?php
+  $id = $this->user->id;
+  if($this->user->isAdmin) {
+    $isAdmin = true;
+  }else{
+    $isAdmin = false;
+  }
+?>
+<br /><br />
+<div id="view-content">
+  <div class="form-group well row">
+    <h2 class="col-md-4">Requests</h2>
+  </div>
+  <?php foreach ($this->listrequest as $req) {
+    if(!$req['done']){
+      echo "<div class='well'>";
+        echo "<div class='well row'>";
+          echo "<div class='form-group'>";
+            echo "<li class='list-group-item col-md-2'>Content :</li>";
+            echo "<li class='list-group-item col-md-10'>".$req['content']."</li>";
+          echo "</div>";
+          echo "<div class='form-group'>";
+            echo "<li class='list-group-item col-md-2'>Owner :</li>";
+            echo "<li class='list-group-item col-md-10'>".$req['owner']."</li>";
+          echo "</div>";
+          echo "<div class='form-group'>";
+            echo "<li class='list-group-item col-md-2'>Actions :</li>";
+            echo "<li class='list-group-item col-md-10'><a href=".$this->baseUrl().'/request/done/id/'.$req['id'].">Done</a>&nbsp;(remove from list)</li>";
+          echo "</div>";
+        echo "</div>";
+      echo "</div>";
+    }
+  } ?>
+</div>
+>>>>>>> d3f520619c7bbb9b0f5a8919064baf302823f9f2

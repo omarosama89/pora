@@ -2,12 +2,11 @@
 
 class Application_Form_Comment extends Zend_Form
 {
-
-    /*public function __construct($ownerId,$matId){
-        $this->ownerId = $ownerId;
-        $this->matId = $matId;
+    private $mid;
+    public function __construct($mid){
+        $this->mid = $mid;
         parent::__construct();
-    }*/
+    }
     public function init()
     {
         /* Form Elements & Other Definitions Here ... */
@@ -27,11 +26,12 @@ class Application_Form_Comment extends Zend_Form
         $post_id->setAttrib('class','form-control');*/
 
 
-        $id = new Zend_Form_Element_Hidden("id");
+        $mid = new Zend_Form_Element_Hidden("mid");
+        $mid->setValue($this->mid);
         $submit = new Zend_Form_Element_Submit("submit");
         $submit->setAttrib('class','form-control btn-primary');
 
-        $this->addElements(array($content,$id,$submit));
+        $this->addElements(array($content,$mid,$submit));
     }
 
 

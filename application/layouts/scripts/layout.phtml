@@ -1,9 +1,13 @@
 <?php
-  $id = $this->user->id;
-  if($this->user->isAdmin) 
-    $isAdmin = true;
-  else
+  if(isset($this->user)){
+    $id = $this->user->id;
+    if($this->user->isAdmin) 
+      $isAdmin = true;
+    else
+      $isAdmin = false;
+  }else{
     $isAdmin = false;
+  }
 ?>
 <html>
 <head>
@@ -23,6 +27,7 @@
       <li><a href="<?php echo $this->baseUrl(); ?>/user/edit/id/<?php echo $id?>">Edit Profile</a></li>
       <?php if($isAdmin){ ?>
         <li><a href="<?php echo $this->baseUrl(); ?>/user/list">List users</a></li>
+        <li><a href="<?php echo $this->baseUrl(); ?>/request/list">List requests</a></li>
       <?php } ?>
       <li><a class="btn btn-success" href="<?php echo $this->baseUrl(); ?>/request/add">Add request</a></li>
       <!-- <li><a href="<?php echo $this->baseUrl(); ?>/index.php/user/listban">List Ban</a></li> -->

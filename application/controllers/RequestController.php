@@ -7,7 +7,13 @@ class RequestController extends Zend_Controller_Action
     {
         $this->auth = Zend_Auth::getInstance();
         if ($this->auth->hasIdentity()) {
+<<<<<<< HEAD
                 $this->view->user = $this->auth->getIdentity();
+=======
+            $this->view->user = $this->user = $this->auth->getIdentity();
+        }else{
+            $this->redirect('user/login');
+>>>>>>> d3f520619c7bbb9b0f5a8919064baf302823f9f2
         }
     }
 
@@ -15,9 +21,9 @@ class RequestController extends Zend_Controller_Action
     {
         // action body
     }
-//------------------------------------------------------------------------
+
     public function addAction()
-   {
+    {
         // action body
         $request_form = new Application_Form_AddRequest();
         $model=new Application_Model_DbTable_Request();
@@ -26,19 +32,19 @@ class RequestController extends Zend_Controller_Action
           $data['owner'] = $this->auth->getIdentity()->id;
           if($request_form->isValid($data)){
             if ($model->addRequest($data))
-                $this->redirect('request/list');
+                $this->redirect('category/list');
              }
          }
        $this->view->request_form=$request_form;
     }
-//------------------------------------------------------------------------
+
     public function listAction()
     {
         // action body
         $model=new Application_Model_DbTable_Request();
         $this->view->listrequest=$model->listRequest();
     }
-//------------------------------------------------------------------------
+
     public function deleteAction()
     {
         // action body
@@ -53,5 +59,16 @@ class RequestController extends Zend_Controller_Action
             }
     
     }
-//-------------------------------------------------------------------------------
+
+    public function doneAction()
+    {
+        $id = $this->_request->getParam('id',-1);
+        $model=new Application_Model_DbTable_Request();
+        $model->makeRequestDone($id);
+        $this->view->listrequest = $model->listRequest();
+        $this->redirect('request/list');
+    }
+
+
 }
+
