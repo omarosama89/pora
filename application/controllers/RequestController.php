@@ -7,7 +7,7 @@ class RequestController extends Zend_Controller_Action
     {
         $this->auth = Zend_Auth::getInstance();
         if ($this->auth->hasIdentity()) {
-                $this->view->user = $this->auth->getIdentity(); 
+                $this->view->user = $this->auth->getIdentity();
         }
     }
 
