@@ -9,10 +9,7 @@
 <br /><br />
 <div id="view-content">
   <div class="form-group well row">
-    <h2 class="col-md-4">Materials</h2>
-    <?php if($isAdmin) { ?>
-      <a href="<?php echo $this->baseUrl();?>/material/add" class="btn btn-success col-md-1">Add Material</a>
-    <?php }?>
+    <h2 class="col-md-4">List Users</h2>
   </div>
   <?php foreach ($this->listusers as $user) {
     $sudo_str = $user['isAdmin']? "Admin" : "Regular";

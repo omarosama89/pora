@@ -14,8 +14,8 @@ class UserController extends Zend_Controller_Action
         $this->model=new Application_Model_DbTable_User();
     }
 
-    public function indexAction()
-    {
+    public function indexAction(){
+    
         // action body
     }
 
@@ -28,7 +28,7 @@ class UserController extends Zend_Controller_Action
           $data = $this->getRequest()->getParams();
           if($form->isValid($data)){
             if ($model->addUser($data))
-                $this->redirect('user/list');
+                $this->redirect('category/list');
              }
          }
         
@@ -54,7 +54,7 @@ class UserController extends Zend_Controller_Action
         if($this->getRequest()->isPost()){
             if($form->isValid($data)){
                 if($model->editUser($id,$data)){
-                    $this->redirect('user/list');
+                    $this->redirect('category/list');
                 }
             }
         }
@@ -156,7 +156,13 @@ class UserController extends Zend_Controller_Action
                     $storage = $auth->getStorage();
                     $storage->write($authAdapter->getResultRowObject());
                     $idd=$auth->getIdentity()->id;
-                    $this->redirect('category/list'); 
+                    // echo $auth->getIdentity()->isActive;exit;
+                    if(!$auth->getIdentity()->isActive){
+                        $this->view->errorMessage = "sorry , you are banned";
+                        $this->render('login');
+                    }else{
+                        $this->redirect('category/list'); 
+                    }
                 }
                 else{
                     //echo "not valid";
@@ -167,12 +173,6 @@ class UserController extends Zend_Controller_Action
                 }
             }
         }
-
-
-
-
-
-    
     }
 
     public function logoutAction()
