@@ -22,8 +22,7 @@ class Application_Model_DbTable_Category extends Zend_Db_Table_Abstract
 		return $extractedData;
 	}
 	public function getCategoryTitle($id){
-		$arr = $this->find($id)->toArray();
-		$record = $arr[0];
+		$record = $this->find($id)->toArray()[0];
 		return $record['title'];
 	}
 

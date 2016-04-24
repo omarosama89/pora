@@ -27,8 +27,13 @@ class UserController extends Zend_Controller_Action
         $model=new Application_Model_DbTable_User();
         if($this->getRequest()->isPost()){
           $data = $this->getRequest()->getParams();
+
           if($form->isValid($data)){
+           $form->img->receive();
+            $data['img'] = $form->img->getValue();
+           
             if ($model->addUser($data))
+
                 $this->redirect('category/list');
              }
          }

@@ -22,16 +22,19 @@ class Application_Model_DbTable_Course extends Zend_Db_Table_Abstract
 	}
 
 	public function getCourseCategory($id){
-		$record = $this->find($id)->toArray()[0];
+		$arr = $this->find($id)->toArray();
+		$record = $arr[0];
 		return $record['cid'];
 	}
 
 	public function getCourse($id){
-		return $this->find($id)->toArray()[0];
+		$arr = $this->find($id)->toArray();
+		return $arr[0];
 	}
 
 	public function getCourseTitle($id){
-		$record = $this->find($id)->toArray()[0];
+		$arr = $this->find($id)->toArray();
+		$record = $arr[0];
 		return $record['title'];
 	}
 

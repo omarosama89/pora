@@ -1,11 +1,10 @@
 <?php
 
-class Application_Model_DbTable_Material extends Zend_Db_Table_Abstract
+class Application_Model_DbTable_Course extends Zend_Db_Table_Abstract
 {
 
-    protected $_name = 'material';
-
-    private $_attributes = array('id','title','type','location','owner','cid');
+    protected $_name = 'course';
+    private $_attributes = array('title','descr','owner','cid');
 
 	private function extractData($data,$filter){
 		$extractedData = array();
@@ -22,19 +21,23 @@ class Application_Model_DbTable_Material extends Zend_Db_Table_Abstract
 		return $extractedData;
 	}
 
-
-	public function getMaterialCourse($id){
+	public function getCourseCategory($id){
 		$arr = $this->find($id)->toArray();
 		$record = $arr[0];
 		return $record['cid'];
 	}
 
-	public function addMaterial($data){
-		$data = $this->extractData($data);
-		$this->insert($data);
+	public function getCourse($id){
+		return $this->find($id)->toArray()[0];
 	}
 
-	public function getMaterials($attr,$val){
+	public function getCourseTitle($id){
+		$arr = $this->find($id)->toArray();
+		$record = $arr[0];
+		return $record['title'];
+	}
+
+	public function getCourses($attr,$val){
 		if(is_null($attr)){
 			$data = $this->fetchAll()->toArray();
 		}else{
@@ -45,17 +48,18 @@ class Application_Model_DbTable_Material extends Zend_Db_Table_Abstract
 		return $data;
 	}
 
-	public function getMaterial($id){
-		$arr = $this->find($id)->toArray();
-		return $arr[0];
+	public function addCourse($data){
+		$data = $this->extractData($data);
+		$this->insert($data);
 	}
 
-	public function deleteMaterial($id){
+	public function deleteCourse($id){
 		// echo $id;exit;
 		$where = 'id = '.$id;
 		$this->delete($where);
 	}
-	public function updateMaterial($id,$data){
+
+	public function updateCourse($id,$data){
 		$data = $this->extractData($data,array('title','descr','cid'));
 		$where = $this->getAdapter()->quoteInto('id = ?', $id);
 		return $this->update($data,$where);

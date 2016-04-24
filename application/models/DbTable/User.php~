@@ -30,7 +30,7 @@ class Application_Model_DbTable_User extends Zend_Db_Table_Abstract
 		//echo $row->pwd.":".$data['pwd'];exit;
 		$row->fname = $data['fname'];
 		$row->lname = $data['lname'];
-		$row->img = $data['img'];
+		//$row->img = $data['image'];
 		$row->gender = $data['gender'];
 		$row->country = $data['country'];
 

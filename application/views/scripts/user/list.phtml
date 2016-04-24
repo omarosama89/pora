@@ -15,6 +15,7 @@
     $sudo_str = $user['isAdmin']? "Admin" : "Regular";
     $ban_str = $user['isActive']? "Active" : "Blocked";
     echo "<div class='well'>";
+      echo "<img src='".$this->baseUrl()."/upload/userimages/".$user['img']."' width='100px' height='100px'/>";
       echo "<div class='well row'>";
         echo "<div class='form-group'>";
           echo "<li class='list-group-item col-md-2'>Username :</li>";
